@@ -1,0 +1,281 @@
+fprintf('Stardew Valley Crop Algorithm\n')
+
+%User input regarding amount of gold and days will be utilized later
+fprintf('Please enter what season you are on\n')
+prompt = 'Please type: Spring, Summer, or Fall\n';
+userinputseason = input(prompt, 's');
+prompt = 'Please type what day you are on (1-28) \n';
+userinputday = input(prompt);
+valid = 0;
+if( userinputday > 28 || userinputday < 1)
+    
+        prompt = 'Please type a valid day';
+        useinputday = input(prompt);
+        valid = 0;
+end
+while( valid == 1)
+        prompt = 'Please type a valid day';
+        useinputday = input(prompt);
+        if( userinputday < 28 || userinputday >= 1)
+            valid = 1;
+        end
+end
+prompt = 'Please type how much gold you currently have \n';
+userinputgold = input(prompt);
+fprintf('In summary, you are on Day %d of %s and have a total of %d gold.', userinputday, userinputseason, userinputgold)
+
+
+
+%These graphs list the max amount of profit made if and only if the amount of land is unlimited and given that the amount 
+%of seeds/starters purchased are also unlimited. It does NOT include the max amount of profit within the constraints of 
+%the total amount of harvests possible in a season.
+
+if( 1 == strcmp(userinputseason, 'Spring'))
+    Spring_Seeds_Profit = [%"Parsnip", "Cauliflower", "Potato", "Tulip", "Kale", "Jazz and Garlic",  "Rhubarb",%
+                               15           95           30        10       40          20              120       ];
+    Spring_Seeds_MP = zeros(1, 100);
+    
+    for index = 1:7
+        Spring_Seeds_MP = zeros(1, 100);
+        for amtpurchased = 1: 100
+            Spring_Seeds_MP(amtpurchased) = Spring_Seeds_Profit(index)*(amtpurchased);
+        end
+           hold on
+            figure(1)
+            plot(Spring_Seeds_MP)
+            xlabel('# of Seeds Purchased')
+            ylabel('Maximum Profit of each Seed')
+           hold off
+    end
+    legend({'Parsnip', 'Cauliflower', 'Potato', 'Tulip', 'Kale', 'Jazz, Garlic', 'Rhubarb'}, 'Location', 'eastoutside')
+    
+    Spring_Starters_Profit = [ %"Bean Starter", "Strawberry Seeds", "Coffee Beans"%
+                                     20                140              -2380      ];
+    Spring_Starters_MP = zeros(1, 100);
+    
+    for index = 1:3
+            Spring_Starters_MP = zeros(1,100);
+            for amtpurchased_starters = 1: 100
+                    Spring_Starters_MP(amtpurchased_starters) = Spring_Starters_Profit(index) * (amtpurchased_starters);
+            end
+               hold on
+                figure(2)
+                plot(Spring_Starters_MP)
+                xlabel('# of Starters Purchased')
+                ylabel('Maximum Profit of the Starter')
+               hold off
+    end
+     legend({'Bean Starter', 'Strawberry Seeds', 'Coffee Beans'}, 'Location', 'eastoutside')             
+end %end if
+
+
+if( 1 == strcmp(userinputseason, 'Summer'))
+    Summer_Seeds_Profit = [%"Melon", "Poppy", Radish", "Red Cabbage", "Starfruit", "Spangle", "Sunflower", "Wheat"%
+                               170       40      50        160            350            40        -120         15 ];
+    Summer_Seeds_MP = zeros(1, 100);
+    
+    for index = 1:8
+        Summer_Seeds_MP = zeros(1, 100);
+        for amtpurchased = 1: 100
+            Summer_Seeds_MP(amtpurchased) = Summer_Seeds_Profit(index)*(amtpurchased);
+        end
+           hold on
+            figure(1)
+            plot(Summer_Seeds_MP)
+            xlabel('# of Seeds Purchased')
+            ylabel('Maximum Profit of each Seed')
+           hold off
+    end
+    legend({'Melon', 'Poppy', 'Radish', 'Red Cabbage', 'Starfruit', 'Spangle', 'Sunflower', 'Wheat'}, 'Location', 'eastoutside')
+    
+    
+    Summer_Starters_Profit = [ %'Blueberry Seeds', 'Corn Seeds', 'Hops Starter', 'Pepper Seeds', 'Tomato Seeds'%
+                                     220                -50           -10              40              70      ];
+    Summer_Starters_MP = zeros(1, 100);
+    for index = 1:5
+            Summer_Starters_MP = zeros(1,100);
+            for amtpurchased_starters = 1: 100
+                    Summer_Starters_MP(amtpurchased_starters) = Summer_Starters_Profit(index) * (amtpurchased_starters);
+            end
+               hold on
+                figure(2)
+                plot(Summer_Starters_MP)
+                xlabel('# of Starters Purchased')
+                ylabel('Maximum Profit of the Starter')
+               hold off
+    end
+     legend({'Blueberry Seeds', 'Corn Seeds', 'Hops Starter', 'Pepper Seeds', 'Tomato Seeds'}, 'Location', 'eastoutside')    
+      
+end %end if
+
+
+if( 1 == strcmp(userinputseason, 'Fall'))
+    Fall_Seeds_Profit = [%"Amaranth", "Artichoke", Bok Choy", "Fairy", "Pumpkin", "Yam"%
+                               80          130        30         90        220     100 ];
+    Fall_Seeds_MP = zeros(1, 100);
+    
+    for index = 1:6
+        Fall_Seeds_MP = zeros(1, 100);
+        for amtpurchased = 1: 100
+            Fall_Seeds_MP(amtpurchased) = Fall_Seeds_Profit(index)*(amtpurchased);
+        end
+           hold on
+            figure(1)
+            plot(Fall_Seeds_MP)
+            xlabel('# of Seeds Purchased')
+            ylabel('Maximum Profit of each Seed')
+           hold off
+    end
+    legend({'Amaranth', 'Artichoke', 'Bok Choy', 'Fairy', 'Pumpkin', 'Yam'}, 'Location', 'eastoutside')
+    
+    
+    Fall_Starters_Profit = [ %'Beet Seeds', 'Cranberry Seeds', 'Eggplant Starter, Grape Starter'%
+                                  140              60                         100              ];
+    Fall_Starters_MP = zeros(1, 100);
+    for index = 1:3
+            Fall_Starters_MP = zeros(1,100);
+            for amtpurchased_starters = 1: 100
+                    Fall_Starters_MP(amtpurchased_starters) = Fall_Starters_Profit(index) * (amtpurchased_starters);
+            end
+               hold on
+                figure(2)
+                plot(Fall_Starters_MP)
+                xlabel('# of Starters Purchased')
+                ylabel('Maximum Profit of the Starter')
+               hold off
+    end
+     legend({'Beet Seeds', 'Cranberry Seeds', 'Eggplant Starter, Grape Starter'}, 'Location', 'eastoutside')    
+      
+end %end if
+
+
+
+%These graphs are the same except they are multiplied by the amount of harvests one can do during a season. 
+%If there are crops that can grow into another season, those harvests are also considered.
+
+if( 1 == strcmp(userinputseason, 'Spring'))
+    Spring_Seeds_Profit = [%"Parsnip", "Cauliflower", "Potato", "Tulip", "Kale", "Jazz", "Garlic",  "Rhubarb",%
+                               15           95           30        10      40      20        20        120       ];
+    Spring_Seeds_Harvests = [ 7             3            4         4        4       4         7         2        ];
+    Spring_Seeds_MP = zeros(1, 100);
+    
+    for index = 1:8
+        Spring_Seeds_MP = zeros(1, 100);
+        for amtpurchased = 1: 100
+            Spring_Seeds_MP(amtpurchased) = Spring_Seeds_Profit(index)*(amtpurchased) * Spring_Seeds_Harvests(index);
+        end
+           hold on
+            figure(3)
+            plot(Spring_Seeds_MP)
+            xlabel('# of Seeds Purchased')
+            ylabel('Maximum Profit of each Seed Given Max Harvests')
+           hold off
+    end
+    legend({'Parsnip', 'Cauliflower', 'Potato', 'Tulip', 'Kale', 'Jazz', 'Garlic', 'Rhubarb'}, 'Location', 'eastoutside')
+    
+    Spring_Starters_Profit = [ %"Bean Starter", "Strawberry Seeds", "Coffee Beans"%
+                                     180               500              -1960      ];
+    Spring_Starters_MP = zeros(1, 100);
+    
+    for index = 1:3
+            Spring_Starters_MP = zeros(1,100);
+            for amtpurchased_starters = 1: 100
+                    Spring_Starters_MP(amtpurchased_starters) = Spring_Starters_Profit(index) * (amtpurchased_starters);
+            end
+               hold on
+                figure(4)
+                plot(Spring_Starters_MP)
+                xlabel('# of Starters Purchased')
+                ylabel('Maximum Profit of the Starter Given Max Harvests')
+               hold off
+    end
+     legend({'Bean Starter', 'Strawberry Seeds', 'Coffee Beans'}, 'Location', 'eastoutside')             
+end %end if
+
+
+if( 1 == strcmp(userinputseason, 'Summer'))
+    Summer_Seeds_Profit = [%"Melon", "Poppy", Radish", "Red Cabbage", "Starfruit", "Spangle", "Sunflower", "Wheat"%
+                               170       40      50        160            350          40        -120         15  ];
+    Summer_Seeds_Harvests = [   2        4        4         3              2            3          3           7  ];
+    Summer_Seeds_MP = zeros(1, 100);
+    
+    for index = 1:8
+        Summer_Seeds_MP = zeros(1, 100);
+        for amtpurchased = 1: 100
+            Summer_Seeds_MP(amtpurchased) = Summer_Seeds_Profit(index)*(amtpurchased) * Summer_Seeds_Harvests(index);
+        end
+           hold on
+            figure(3)
+            plot(Summer_Seeds_MP)
+            xlabel('# of Seeds Purchased')
+            ylabel('Maximum Profit of each Seed Given Max Harvests')
+           hold off
+    end
+    legend({'Melon', 'Poppy', 'Radish', 'Red Cabbage', 'Starfruit', 'Spangle', 'Sunflower', 'Wheat'}, 'Location', 'eastoutside')
+    
+    
+    Summer_Starters_Profit = [ %'Blueberry Seeds', 'Corn Seeds', 'Hops Starter', 'Pepper Seeds', 'Tomato Seeds'%
+                                     520                50            365              280              250      ];
+    Summer_Starters_MP = zeros(1, 100);
+    for index = 1:5
+            Summer_Starters_MP = zeros(1,100);
+            for amtpurchased_starters = 1: 100
+                    Summer_Starters_MP(amtpurchased_starters) = Summer_Starters_Profit(index) * (amtpurchased_starters);
+            end
+               hold on
+                figure(4)
+                plot(Summer_Starters_MP)
+                xlabel('# of Starters Purchased')
+                ylabel('Maximum Profit of the Starter Given Max Harvests')
+               hold off
+    end
+     legend({'Blueberry Seeds', 'Corn Seeds', 'Hops Starter', 'Pepper Seeds', 'Tomato Seeds'}, 'Location', 'eastoutside')    
+      
+end %end if
+
+
+if( 1 == strcmp(userinputseason, 'Fall'))
+    Fall_Seeds_Profit = [%"Amaranth", "Artichoke", Bok Choy", "Fairy", "Pumpkin", "Yam"%
+                               80          130        30         90        220     100 ];
+    Fall_Seeds_Harvests = [    4           3           7         2          2       2  ];
+    Fall_Seeds_MP = zeros(1, 100);
+    
+    for index = 1:6
+        Fall_Seeds_MP = zeros(1, 100);
+        for amtpurchased = 1: 100
+            Fall_Seeds_MP(amtpurchased) = Fall_Seeds_Profit(index)*(amtpurchased)* Fall_Seeds_Harvests(index);
+        end
+           hold on
+            figure(3)
+            plot(Fall_Seeds_MP)
+            xlabel('# of Seeds Purchased')
+            ylabel('Maximum Profit of each Seed Given Max Harvests')
+           hold off
+    end
+    legend({'Amaranth', 'Artichoke', 'Bok Choy', 'Fairy', 'Pumpkin', 'Yam'}, 'Location', 'eastoutside')
+    
+    
+    Fall_Starters_Profit = [ %'Beet Seeds', 'Cranberry Seeds', 'Eggplant Starter', 'Grape Starter'%
+                                  380            510                  280                500     ];
+    Fall_Starters_MP = zeros(1, 100);
+    for index = 1:4
+            Fall_Starters_MP = zeros(1,100);
+            for amtpurchased_starters = 1: 100
+                    Fall_Starters_MP(amtpurchased_starters) = Fall_Starters_Profit(index) * (amtpurchased_starters);
+            end
+               hold on
+                figure(4)
+                plot(Fall_Starters_MP)
+                xlabel('# of Starters Purchased')
+                ylabel('Maximum Profit of the Starter Given Max Harvests')
+               hold off
+    end
+     legend({'Beet Seeds', 'Cranberry Seeds', 'Eggplant Starter', 'Grape Starter'}, 'Location', 'eastoutside')    
+      
+end %end if
+
+
+%%
+
+
+
